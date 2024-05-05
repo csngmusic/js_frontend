@@ -2,27 +2,42 @@ import React from 'react';
 
 class ToDoTask extends React.Component{
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       done: this.props.task.done
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    this.onStatusClick = this.onStatusClick.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  handleClick(e) {
+  onStatusClick(e) {
     e.preventDefault();
 
     this.setState({
       done: !this.state.done
     });
-
   }
+  onDeleteClick(e) {
+    e.preventDefault();
 
+    fetch(`tasks/${this.props.task._id}`, {method: 'DELETE'}).then(function(res) {
+      if (res.status === 200) {
+        console.log('Deleted');
+      }
+      else {
+        console.log('Not deleted');
+      }
+    }).then((data) => {
+      this.setState({
+        tasks: data
+      });
+    });
+  }
   render() {
     return(
-      <li onClick={this.handleClick}>{this.props.task.name} - {this.state.done? 'Done' : 'Todo'}</li>
+      <li onClick={this.onStatusClick}>{this.props.task.name} - {this.state.done? 'Done' : 'Todo'} <button onClick={this.onDeleteClick}>Delete</button></li>
     )
   }
 }
