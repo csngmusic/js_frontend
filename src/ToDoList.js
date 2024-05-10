@@ -30,11 +30,13 @@ class ToDoList extends React.Component{
       })
     });
   }
+
   onTaskAdd(task) {
     this.setState({
       tasks: [...this.state.tasks, task]
     });
   }
+  
   render() {
     return (
       <div className="List">
