@@ -8,6 +8,8 @@ class App extends React.Component{
     this.state = {
       tasks: []
     }
+
+    this.onTaskDelete = this.onTaskDelete.bind(this);
   }
 
   componentDidMount() {
@@ -20,18 +22,23 @@ class App extends React.Component{
     });
   }
 
+  onTaskDelete(_id) {
+    this.setState({
+      tasks: this.state.tasks.filter(function(task) {
+        return task._id !== _id;
+      })
+    });
+  }
   render() {
-    function mapTodoList(task){
-      return(
-        <ToDoTask task={task} key = {task._id} />
-      )
-    }
-
     return (
       <div className="App">
         <ul>
           {
-            this.state.tasks.map(mapTodoList)
+            this.state.tasks.map((task) => {
+              return(
+                <ToDoTask task={task} onTaskDelete = {this.onTaskDelete} key = {task._id} />
+              )
+            })
           }
         </ul>
       </div>

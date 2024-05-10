@@ -22,9 +22,12 @@ class ToDoTask extends React.Component{
   onDeleteClick(e) {
     e.preventDefault();
 
-    fetch(`tasks/${this.props.task._id}`, {method: 'DELETE'}).then(function(res) {
+    fetch(`tasks/${this.props.task._id}`, {
+      method: 'DELETE'
+    }).then((res) => {
       if (res.status === 200) {
         console.log('Deleted');
+        this.props.onTaskDelete(this.props.task._id);
       }
       else {
         console.log('Not deleted');
