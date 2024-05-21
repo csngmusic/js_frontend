@@ -72,7 +72,7 @@ class ToDoTaskAddInner extends React.Component{
           </div>
         </form>
         <div className="d-block text-right card-footer">
-          <button className="btn btn-primary"><NavLink to='/' className="btn btn-primary">Back to list</NavLink></button>
+          <NavLink to='/' className="btn btn-primary">Back to list</NavLink>
         </div>
       </div>    
     )

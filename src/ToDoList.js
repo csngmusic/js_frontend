@@ -32,7 +32,7 @@ class ToDoList extends React.Component{
           </perfect-scrollbar>
         </div>
         <div className="d-block text-right card-footer">
-          <button className="btn btn-primary"><NavLink to='/add' className="btn btn-primary">Add task</NavLink></button>
+          <NavLink to='/add' className="btn btn-primary">Add task</NavLink>
         </div>
       </div>
     );
